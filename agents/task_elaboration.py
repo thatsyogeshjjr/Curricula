@@ -3,22 +3,22 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from core.llm_client import LLMClient
 
-class DeduperAgent:
+
+class ElaboratorAgent:
     def __init__(self):
-        # Load prompt template from file
-        with open("prompts/deduper.txt", "r") as file:
+        with open("prompts/task_elaboration.txt", "r") as file:
             self.template = file.read()
 
         self.prompt = PromptTemplate(
-            input_variables=["schedule"],
+            input_variables=["goal"],
             template=self.template
         )
 
         self.llm = LLMClient.get_llm()
 
-        self.chain = LLMChain(llm=self.llm, prompt=self.prompt)
+        self.chain = self.prompt | self.llm
 
-    def run(self, schedule: str) -> str:
+    def run(self, goal: str) -> str:
         return self.chain.invoke({
-            "schedule": schedule
-        })
+            "goal": goal,
+        }).content

@@ -10,18 +10,20 @@ class PlannerAgent:
             self.template = file.read()
 
         self.prompt = PromptTemplate(
-            input_variables=["goal", "duration", "hours_per_week", "skills"],
+            input_variables=["goal", "duration", "skills"],
             template=self.template
         )
 
         self.llm = LLMClient.get_llm()
 
-        self.chain = LLMChain(llm=self.llm, prompt=self.prompt)
+        self.chain = self.prompt | self.llm
 
-    def run(self, goal: str, duration: str, hours_per_week: int, skills: str) -> str:
-        return self.chain.run({
+    def run(self, goal: str, duration: str, skills: str) -> str:
+        llm_reponse = self.chain.invoke({
             "goal": goal,
             "duration": duration,
-            "hours_per_week": hours_per_week,
             "skills": skills
         })
+
+        return llm_reponse.content
+    
