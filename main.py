@@ -77,7 +77,7 @@ def main(mode: str = "debug"):
         
 
     elif mode == "prod":
-        uvicorn.run(app, host="0.0.0.0", port=8000)
+        uvicorn.run(app)
     else:
         pass
 
