@@ -25,15 +25,12 @@ def main(mode: str = "debug"):
         # parser_agent = ParserAgent()
         elaborator_agent = ElaboratorAgent()  
 
-        # Test it with a simple message
-        # response = LLMClient.get_llm().invoke([ HumanMessage(content="Give me a study plan to learn Python in 2 weeks, structure should be a weekly goal list that person can use to track progress")])
 
-
-        # planner_response = planner_agent.run(
-        #     goal="Learn Python",
-        #     duration="2",
-        #     skills="basic programming, problem-solving"
-        # )
+        planner_response = planner_agent.run(
+            goal="Learn Python",
+            duration="2",
+            skills="basic programming, problem-solving"
+        )
 
         # print("✅ planner response generated")
 
