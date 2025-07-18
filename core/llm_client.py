@@ -8,9 +8,9 @@ class LLMClient:
 
     @staticmethod
     def get_llm(model: str = "deepseek/deepseek-r1:free", temperature: float = 0.7):
-        if "DEEPSEEK_API_KEY" in os.environ:
-            del os.environ["DEEPSEEK_API_KEY"]
-        load_dotenv()
+        # if "DEEPSEEK_API_KEY" in os.environ:
+        #     del os.environ["DEEPSEEK_API_KEY"]
+        # load_dotenv()
         if not os.getenv("DEEPSEEK_API_KEY"):
             print("Can't find api key")
             return
